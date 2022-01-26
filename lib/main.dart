@@ -1,3 +1,4 @@
+import 'package:ali_notes/pages/confirmEmail.dart';
 import 'package:ali_notes/pages/login.dart';
 import 'package:flutter/material.dart';
 
