@@ -81,7 +81,7 @@ class _ConfrimEmailState extends State<ConfrimEmail> {
 
   Future<void> confirm(String email, String code) async {
     print("Confirmar correo");
-    final userPool = CognitoUserPool("us-east-1_rPA1nH964","17954fgss6na0dsu27t0fq1cmc");
+    final userPool = CognitoUserPool("xxxxxxxxxxx","xxxxxxxxxxxxxxxxxx");
 
     final cognitoUser = CognitoUser(email, userPool);
 
