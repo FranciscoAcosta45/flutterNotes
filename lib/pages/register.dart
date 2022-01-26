@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:amazon_cognito_identity_dart_2/cognito.dart';
+
+import 'confirmEmail.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -8,6 +12,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  String _email = "";
+  String _password = "";
+  String _userName = "";
+  String _passwordConfirm = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +44,7 @@ class _RegisterState extends State<Register> {
                       height: 50.0,
                       child:
                       RaisedButton(
-                        onPressed: () => {},
+                        onPressed: () => registerUser(_userName,_email,_password, _userName),
                         color: Colors.greenAccent,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)
@@ -84,6 +93,11 @@ class _RegisterState extends State<Register> {
                     borderRadius: BorderRadius.circular(10)
                 )
             ),
+            onChanged: (value){
+              setState(() {
+                _userName = value;
+              });
+            },
           )
         ],
       ),
@@ -107,6 +121,11 @@ class _RegisterState extends State<Register> {
                     borderRadius: BorderRadius.circular(10)
                 )
             ),
+            onChanged: (value){
+              setState(() {
+                _email = value;
+              });
+            },
           )
         ],
       ),
@@ -130,6 +149,11 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(10)
               ),
             ),
+            onChanged: (value){
+              setState(() {
+                _password = value;
+              });
+            },
           ),
         ],
       ),
@@ -153,9 +177,36 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(10)
               ),
             ),
+            onChanged: (value){
+              setState(() {
+                _passwordConfirm = value;
+              });
+            },
           ),
         ],
       ),
     );
+  }
+
+  Future<void> registerUser(String name, String email, String password, String userName) async {
+    final userPool = CognitoUserPool("us-east-1_rPA1nH964","17954fgss6na0dsu27t0fq1cmc");
+    final userAttributes = [
+      AttributeArg(name: 'name', value: name),
+      AttributeArg(name: 'email', value: email),
+    ];
+
+    var data;
+    
+    try {
+      data = await userPool.signUp(
+        userName,
+        password,
+        userAttributes: userAttributes,
+      );
+      print("Funcionoooo!");
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ConfrimEmail(_userName)));
+    }catch(e){
+      print("erroooooor : ${e}");
+    }
   }
 }
