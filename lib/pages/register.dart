@@ -189,7 +189,7 @@ class _RegisterState extends State<Register> {
   }
 
   Future<void> registerUser(String name, String email, String password, String userName) async {
-    final userPool = CognitoUserPool("us-east-1_rPA1nH964","17954fgss6na0dsu27t0fq1cmc");
+    final userPool = CognitoUserPool("xxxxxxxxx","xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     final userAttributes = [
       AttributeArg(name: 'name', value: name),
       AttributeArg(name: 'email', value: email),
