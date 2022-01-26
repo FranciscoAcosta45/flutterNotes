@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
 
   Future<void> iniciarSecion(String email, String password) async {
     print("Iniciar secion");
-    final userPool = CognitoUserPool("us-east-1_rPA1nH964","17954fgss6na0dsu27t0fq1cmc");
+    final userPool = CognitoUserPool("xxxxxxxxxxxx","xxxxxxxxxxxxxxxxxxx");
     final cognitoUser = CognitoUser(email, userPool);
     final authDetails = AuthenticationDetails(
       username: email,
